@@ -82,10 +82,10 @@ The extensions that make up gossipsub v2.0 introduce several new application con
 
 The following parameters apply globally:
 
-| Parameter    | Purpose                                                                             | Reasonable Default |
-|--------------|-------------------------------------------------------------------------------------|--------------------|
-| `timeout`    | Timeout for `INEED` messages                                                        | 400 milliseconds   |
-| `D_announce` | Desired number of times a message is sent lazily to the mesh. Should be at most `D` | 4                  |
+| Parameter    | Purpose                                                                           | Reasonable Default |
+|--------------|-----------------------------------------------------------------------------------|--------------------|
+| `timeout`    | Timeout for `INEED` messages                                                      | 400 milliseconds   |
+| `D_announce` | Desired number of times a message is sent lazily to the mesh. Must be at most `D` | 4                  |
 
 
 ### Router State
