@@ -82,10 +82,10 @@ The extensions that make up gossipsub v2.0 introduce several new application con
 
 The following parameters apply globally:
 
-| Parameter    | Purpose                                                       | Reasonable Default |
-|--------------|---------------------------------------------------------------|--------------------|
-| `timeout`    | Timeout for `INEED` messages                                  | 400 milliseconds   |
-| `D_announce` | Number of lazy peers to keep in the mesh. Must be at most `D` | 4                  |
+| Parameter    | Purpose                                                                   | Reasonable Default |
+|--------------|---------------------------------------------------------------------------|--------------------|
+| `timeout`    | Timeout for `INEED` messages                                              | 400 milliseconds   |
+| `D_announce` | Number of times a message is sent lazily to the mesh. Must be at most `D` | 4                  |
 
 The following parameters apply per topic:
 
@@ -117,9 +117,9 @@ Upon receiving a message, the router will first process and validate the message
 
 If the message is valid and has not been previously seen, firstly it clears `acache[msgid]` to prevent sending any more `IANNOUNCE`.
 
-Secondly, for each mesh peer to which the router wants to forward the message, it will toss a coin to decide whether to forward the message eargerly or lazily. The probability of forwarding lazily is determined by `P_lazy`.
+Secondly, for each mesh peer to which the router wants to forward the message, it will toss a coin to decide whether to forward the message eagerly or lazily. The probability of forwarding lazily is determined by `P_lazy`.
 
-- If the router decides to forward the message eargerly, it will just forward the full message to that mesh peer.
+- If the router decides to forward the message eagerly, it will just forward the full message to that mesh peer.
 - If the router decides to forward the message lazily, it will send `IANNOUNCE` with the message id attached instead to tell them that it just receives a new message. If they want the full content of the message, they should send `INEED` back.
 
 After processing the message payload, the router will process the new control messages as follows:
