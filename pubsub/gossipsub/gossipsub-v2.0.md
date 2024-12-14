@@ -82,15 +82,16 @@ The extensions that make up gossipsub v2.0 introduce several new application con
 
 The following parameters apply globally:
 
-| Parameter      | Purpose                          | Reasonable Default |
-|----------------|----------------------------------|--------------------|
-| `timeout`      | Timeout for `INEED` messages     | 400 milliseconds   |
+| Parameter    | Purpose                                                       | Reasonable Default |
+|--------------|---------------------------------------------------------------|--------------------|
+| `timeout`    | Timeout for `INEED` messages                                  | 400 milliseconds   |
+| `D_announce` | Number of lazy peers to keep in the mesh. Must be at most `D` | 4                  |
 
 The following parameters apply per topic:
 
-| Parameter      | Purpose                                   | Reasonable Default |
-|----------------|-------------------------------------------|--------------------|
-| `P_lazy`       | Probabilty to send the message lazily     | 0.5                |
+| Parameter      | Purpose                                                                        | Reasonable Default |
+|----------------|--------------------------------------------------------------------------------|--------------------|
+| `P_lazy`       | Probability to send the message lazily. This should be equal to `D_announce/D` | 0.5                |
 
 ### Router State
 
@@ -136,6 +137,10 @@ After processing the message payload, the router will process the new control me
 Apart from forwarding received messages, the router can of course publish messages on its own behalf. This is very similar to forwarding received messages. It also has to toss a coin to decide whether to send the message eargerly or lazily.
 
 [seen-cache]: ../gossipsub/gossipsub-v1.0.md#message-cache
+
+### Flood Publishing
+
+In the event `D_announce` is equivalent to `D` we disable flood publishing as the message originator is trivially identifiable if message propagation is completely announcement based. 
 
 ### Protobuf
 
