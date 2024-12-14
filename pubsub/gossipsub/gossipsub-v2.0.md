@@ -129,7 +129,7 @@ After processing the message payload, the router will process the new control me
 
 - Upon receiving `INEED` after sending `IANNOUNCE`, the router must send the full content back without an option to decline. Otherwise it will be deemed misbehaving.
 
-Apart from forwarding received messages, the router can of course publish messages on its own behalf. This is very similar to forwarding received messages. It also has to toss a coin to decide whether to send the message eargerly or lazily.
+Apart from forwarding received messages, the router can of course publish messages on its own behalf. This is very similar to forwarding received messages. It also has to toss a coin to decide whether to send the message eagerly or lazily.
 
 [seen-cache]: ../gossipsub/gossipsub-v1.0.md#message-cache
 
