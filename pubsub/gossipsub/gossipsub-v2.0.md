@@ -136,7 +136,7 @@ Apart from forwarding received messages, the router can of course publish messag
 ### Message Publishing
 
 For message publishing, as long as `D_announce` is less than `D`, full messages are published to our mesh peers. There is no advantage to lazy mesh
-propagation as it only increases the latency of the message. In the event `D_announce` is equivalent to `D` we disable publishing the full message as 
+propagation as none of the peers have seen the message before. In the event `D_announce` is equivalent to `D` we disable publishing the full message as 
 the message originator is trivially identifiable if message propagation is completely announcement based. 
 
 ### Protobuf
