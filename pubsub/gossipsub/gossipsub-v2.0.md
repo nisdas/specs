@@ -133,9 +133,11 @@ Apart from forwarding received messages, the router can of course publish messag
 
 [seen-cache]: ../gossipsub/gossipsub-v1.0.md#message-cache
 
-### Flood Publishing
+### Message Publishing
 
-In the event `D_announce` is equivalent to `D` we disable flood publishing as the message originator is trivially identifiable if message propagation is completely announcement based. 
+For message publishing, as long as `D_announce` is less than `D`, full messages are published to our mesh peers. There is no advantage to lazy mesh
+propagation as it only increases the latency of the message. In the event `D_announce` is equivalent to `D` we disable publishing the full message as 
+the message originator is trivially identifiable if message propagation is completely announcement based. 
 
 ### Protobuf
 
